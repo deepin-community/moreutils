@@ -1,183 +1,174 @@
-moreutils (0.69-1) unstable; urgency=medium
+moreutils (0.69) unstable; urgency=medium
 
-  * New upstream version (0.69)
-  * Add initial debian/gbp.conf
+  * Makefile: Warn users of pkgx.dev about their poor life choices.
 
- -- Nicolas Schier <nicolas@fjasle.eu>  Sun, 25 Feb 2024 21:55:58 +0100
+ -- Joey Hess <id@joeyh.name>  Sun, 25 Feb 2024 15:46:15 -0400
 
-moreutils (0.68-1) unstable; urgency=medium
+moreutils (0.68) unstable; urgency=medium
 
-  [ Debian Janitor ]
-  * Remove constraints unnecessary since buster (oldstable):
-    + Build-Depends: Drop versioned constraint on dpkg-dev.
+  * popen: Use pclose, fixing compile warning.
+    Thanks, Mikel Olasagasti Uranga
+  * vidir: Zero pad line numbers to work better when used with
+    a small tab size such as 2.
+    Thanks, Johan Grande
 
-  * New upstream version (0.68)
+ -- Joey Hess <id@joeyh.name>  Tue, 28 Nov 2023 14:10:42 -0400
 
- -- Nicolas Schier <nicolas@fjasle.eu>  Tue, 06 Feb 2024 21:13:02 +0100
+moreutils (0.67) unstable; urgency=medium
 
-moreutils (0.67-1) unstable; urgency=medium
+  * README: Formalize that I am not adding new tools to moreutils,
+    and have not for a long while. This package needs someone new to
+    take over editorial responsibility.
+  * Makefile: Install man pages without executable bit.
+    Thanks, meator
+  * ifne.1: Improve example that pipes to mail to avoid escape
+    sequences.
 
-  * lintian-overrides: Fix override syntax
-  * New upstream version (0.67):
-    + request for adoption
-    + Makefile: Install man pages without executable bit.
-    + ifne.1: Improve example that pipes to mail to avoid escape
-      sequences.
+ -- Joey Hess <id@joeyh.name>  Tue, 21 Dec 2021 15:34:32 -0400
 
- -- Nicolas Schier <nicolas@fjasle.eu>  Thu, 03 Mar 2022 21:33:40 +0100
+moreutils (0.66) unstable; urgency=medium
 
-moreutils (0.66-1) unstable; urgency=medium
+  * vipe: When no output is piped into vipe, and stdin is connected to
+    the terminal, don't read from stdin before opening the editor.
+    This allows eg: vipe | command
+    Thanks, Florian Pensec
+  * chronic: With -v, flush stdout after printing "STDERR" header.
+    Thanks, Adam Sjøgren
 
-  * New upstream version (0.66):
-    + vipe: allow eg: vipe | command
-    + chronic: With -v, flush stdout after printing "STDERR" header.
+ -- Joey Hess <id@joeyh.name>  Thu, 16 Sep 2021 09:12:42 -0400
 
- -- Nicolas Schier <nicolas@fjasle.eu>  Wed, 17 Nov 2021 21:42:08 +0100
+moreutils (0.65) unstable; urgency=medium
 
-moreutils (0.65-1) unstable; urgency=medium
+  * vipe: Added --suffix option.
+    Thanks, Pål Grønås Drange.
+  * ifdata: fail when -ph is given but no hwaddr is available 
+    (Closes: #386755)
+    Thanks, Nicolas Schier
 
-  * New upstream version (0.65):
-    + vipe: Added --suffix option.
-    + ifdata: fail when -ph is given but no hwaddr is available
-      (Closes: #386755)
-  * Remove upstreamed patch
+ -- Joey Hess <id@joeyh.name>  Sat, 02 Jan 2021 12:24:51 -0400
 
- -- Nicolas Schier <nicolas@fjasle.eu>  Sun, 03 Jan 2021 20:46:54 +0100
+moreutils (0.64) unstable; urgency=medium
 
-moreutils (0.64-1) unstable; urgency=medium
+  * parallel: fix typo in usage message.
+  * Makefile: Propagate compiler and linker flags when building is_utf8.
+  * ts: Fix parsing of ISO-8601 dates.
+    Thanks, David Laban.
+  * parallel: Allow compiling with uClibc-ng, which does not have getloadavg.
+    Thanks, Rosen Penev
 
-  * New upstream version (0.64):
-    + parallel: fix typo in usage message.
-    + Makefile: Propagate compiler and linker flags when building is_utf8.
-    + ts: Fix parsing of ISO-8601 dates.
-    + parallel: Allow compiling with uClibc-ng, which does not have getloadavg.
-  * Remove upstreamed patches
-  * Update Vcs-* URIs
-  * ifdata.docbook: fix a simple typo (patch)
-  * debian/copyright: Expand wildcard for sponge.*
-  * Bump standards version to 4.5.0 (no further changes required)
-  * debian/watch: Enable gpg signature verification
+ -- Joey Hess <id@joeyh.name>  Thu, 20 Aug 2020 13:05:19 -0400
 
- -- Nicolas Schier <nicolas@fjasle.eu>  Fri, 30 Oct 2020 06:02:27 +0100
+moreutils (0.63) unstable; urgency=medium
 
-moreutils (0.63-1) unstable; urgency=medium
+  * vipe: Clean up temp file even when it exits with an error.
+    Thanks, Stig Palmquist.
+  * ts: Fix ts -m %.s to not output negative microseconds.
+    Thanks, Dima Kogan
+  * sponge: Fix bug in -a mode that doubled original content of file when
+    the temp file is located on a different filesystem.
 
-  * New upstream version (0.63):
-    + vipe: Clean up temp file even when it exits with an error.
-    + ts: Fix ts -m %.s to not output negative microseconds.
-    + sponge: Fix bug in -a mode that doubled original content of file when
-      the temp file is located on a different filesystem.
-  * Change suggested perl libs to depends (Closes: #825309)
-  * Add salsa Vcs-{Browser,Git} URIs
-  * Inrease verbosity during package build
-  * Wrap and sort build depends
-  * .gitignore: ignore is_utf8's objects
-  * Bump standards version to 4.3.0 (no changes required)
+ -- Joey Hess <id@joeyh.name>  Wed, 09 Jan 2019 11:14:01 -0400
 
- -- Nicolas Schier <nicolas@fjasle.eu>  Wed, 20 Feb 2019 22:03:31 +0100
+moreutils (0.62) unstable; urgency=medium
 
-moreutils (0.62-1) unstable; urgency=medium
+  * ts: Add -m option to use monotonic clock.
+    Thanks, Ben Leinweber
+  * ts: Added %.T format like %T but with hi-res.
+    Thanks, Matt Koscica
+  * pee: Ignore SIGPIPE and write errors caused by the command not
+    consuming all its input. Closes: #697052
+    Thanks, Ole Jørgen Brønner
+  * chronic: document return value semantics of -e option. Closes: #867167
+    Thanks, Daniel Shahaf
+  * vidir: reword man page to more explicit mention 'file' args.
+    Closes: #885221
+    Thanks, Daniel Shahaf
+  * pee: Don't buffer input, bringing behavior into line with tee.
+    Thanks, Sauerbeck Tilman
 
-  * New upstream version (0.62):
-    + chronic: Flush output more often to better preserve stdout,err ordering.
-    + ts: Add -m option to use monotonic clock.
-    + ts: Added %.T format like %T but with hi-res.
-    + pee: Ignore SIGPIPE and write errors caused by the command not
-      consuming all its input. Closes: #697052
-    + chronic: document return value semantics of -e option. Closes: #867167
-    + vidir: reword man page to more explicit mention 'file' args.
-      Closes: #885221
-    + pee: Don't buffer input, bringing behavior into line with tee.
-  * Remove obsolete is-utf8 patch
-  * Mark moreutils Multi-Arch: foreign. Closes: #893880,
-    thanks to Helmut Grohne <helmut@subdivi.de>
-  * debian/copyright: update URI: http → https
-  * Bump standards to 4.1.3 (no changes required)
-  * Use debhelper 11
-  * debian/rules: use dpkg-buildflags for hardening
-  * parallel: fix minor typo (patch)
-  * Use https in homepage URI
-  * is_utf8: fix allow-hardening-flags patch
-  * Override lintian tag hardening-no-fortify functions for usr/bin/ifne
+ -- Joey Hess <id@joeyh.name>  Sun, 31 Dec 2017 12:02:05 -0400
 
- -- Nicolas Schier <nicolas@fjasle.eu>  Fri, 06 Apr 2018 22:21:07 +0200
+moreutils (0.61) unstable; urgency=medium
 
-moreutils (0.60-1) unstable; urgency=medium
+  * chronic: Flush output more often to better preserve stdout,err ordering.
+    Thanks, Miroslav Šustek
 
-  * New upstream version (0.60):
-    isutf8: new implementation, Closes: #691330
+ -- Joey Hess <id@joeyh.name>  Wed, 19 Apr 2017 10:23:11 -0400
 
- -- Nicolas Schier <nicolas@fjasle.eu>  Sun, 01 Jan 2017 22:20:01 +0100
+moreutils (0.60) unstable; urgency=medium
 
-moreutils (0.59-1) unstable; urgency=medium
+  * New implementation of isutf8 by Julien Palard.
+    - Noncharacters (ending with 0xFFFF and 0xFFFE) were considered
+      invalid when encoded in utf8, according to the unicode standard
+      they are valid: "However, they are not illegal in interchange, nor
+      does their presence cause Unicode text to be ill-formed."
+    - \xf4\xbf\xbf\xbf was considered valid UTF8, which is not: after
+      0xF4 the following byte should be between 80 and 8F.
+    - This implementation does not try to decode the stream, so it checks
+      it faster.
+    - Add --list option. Closes: #691330
+  * Support bullding in Cygwin.
+    Thanks, StalkR
+  * OSX build fix.
+    Thanks, Tony Kelman.
 
-  * New upstream version (0.59):
-    chronic: New options -v (stdout/stderr verbosity) and -e (display any
-    stderr, not just on non-null return value)
-  * debian/copyright: update copyright year
-  * debian/control: bump standards to 3.9.8 (no changes required)
+ -- Joey Hess <id@joeyh.name>  Fri, 12 Aug 2016 19:15:57 -0400
 
- -- Nicolas Schier <nicolas@hjem.rpa.no>  Mon, 11 Apr 2016 07:25:42 +0200
+moreutils (0.59) unstable; urgency=medium
 
-moreutils (0.58-1) unstable; urgency=medium
+  * Makefile: add DOCBOOKXSL setting.
+    Thanks, Kevin Bullock
+  * parallel: include signal.h to fix warning when building with clang
+    Thanks, Kevin Bullock
+  * chronic: Added -v option for more verbose output.
+    Thanks, Tomas Mudrunka
+  * chronic: Added -e option to display any stderr.
+    Thanks, Tomas Mudrunka
 
-  * New upstream version (0.58):
-    + OpenBSD compile fix.
-    + ts: Quiet perl's complaints about utf-8. Closes: #812143
+ -- Joey Hess <id@joeyh.name>  Sat, 02 Apr 2016 15:23:08 -0400
 
- -- Nicolas Schier <nicolas@hjem.rpa.no>  Tue, 01 Mar 2016 11:43:24 +0100
+moreutils (0.58) unstable; urgency=medium
 
-moreutils (0.57-1) unstable; urgency=medium
+  * OpenBSD compile fix.
+    Thanks, Michael Reed.
+  * ts: Quiet perl's complaints about utf-8. Closes: #812143
+    Thanks, Nicolas Schier.
 
-  * New upstream version (0.57); no functional changes.
+ -- Joey Hess <id@joeyh.name>  Tue, 23 Feb 2016 17:11:52 -0400
 
- -- Nicolas Schier <nicolas@hjem.rpa.no>  Thu, 16 Jul 2015 22:22:53 +0200
+moreutils (0.57) unstable; urgency=medium
 
-moreutils (0.56-1) unstable; urgency=medium
+  * Avoid using non-portable error() in ifdata, a portability reversion
+    introduced in 0.56.
 
-  * New upstream version:
-    * ifdata: Fix error messages when a non-existent network interface
-      is queried. Closes: #386754
-    * errno.docbook: Fix typo. Closes: #749399
-    * vidir: Create missing target directories. Closes: #728688
-  * All patches applied upstream
-  * Upload to unstable
+ -- Joey Hess <id@joeyh.name>  Mon, 13 Jul 2015 18:29:06 -0400
 
- -- Nicolas Schier <nicolas@hjem.rpa.no>  Thu, 04 Jun 2015 04:37:11 +0200
+moreutils (0.56) unstable; urgency=medium
 
-moreutils (0.55-2) experimental; urgency=medium
+  * ifdata: Fix error messages when a non-existent network interface
+    is queried. Closes: #386754 Thanks, Nicolas Schier
+  * errno.docbook: Fix typo. Closes: #749399
+  * vidir: Create missing target directories. Closes: #728688
+    Thanks, Nicolas Schier
 
-  * errno.docbook: fix typo (Closes: #749399) (upstream patch)
-  * ifdata: descriptive non-exist netdev error msg (Closes: #386754)
-    (upstream patch)
-  * vidir: Create missing target directories (Closes: #728688)
+ -- Joey Hess <id@joeyh.name>  Wed, 03 Jun 2015 12:03:50 -0400
 
- -- Nicolas Schier <nicolas@hjem.rpa.no>  Fri, 17 Apr 2015 05:32:21 +0200
+moreutils (0.55) unstable; urgency=medium
 
-moreutils (0.55-1) experimental; urgency=medium
+  * parallel: serialise output through internal pipe. Closes: #704125
+    Thanks, Nicolas Schier.
+  * sponge: add append option '-a'. Closes: #623197
+    Thanks, Nicolas Schier.
 
-  * New upstream release:
-    * parallel: serialise output through internal pipe (Closes: #704125).
-    * sponge: add append option '-a' (Closes: #623197),
-      thanks, Michael Stummvoll.
-    * sponge: make '-a' atomically, if possible.
-    * copyright and URL updates.
-  * Add preliminary watch file (download does not work).
+ -- Joey Hess <id@joeyh.name>  Mon, 19 Jan 2015 13:58:08 -0400
 
- -- Nicolas Schier <nicolas@hjem.rpa.no>  Wed, 28 Jan 2015 08:48:55 +0100
+moreutils (0.54) unstable; urgency=medium
 
-moreutils (0.54-1) unstable; urgency=medium
+  * vidir: Fix bug in handling filenames that share a common
+    prefix when renaming. Closes: #654326
+    Thanks, Kushal Kumaran
 
-  * Set debhelper compat to 9.
-  * Remove unused lines from debian/rules.
-  * New maintainer (Closes: #768529).
-  * Update copyright.
-  * Set source format to '3.0 (quilt)'.
-  * Update Standards-Version to 3.9.6 (no changes required).
-  * New upstream version (0.54).
-    Includes a vidir bug fix (Closes: #654326).
-
- -- Nicolas Schier <nicolas@hjem.rpa.no>  Tue,  2 Dec 2014 04:58:04 +0100
+ -- Joey Hess <id@joeyh.name>  Fri, 28 Nov 2014 11:25:32 -0400
 
 moreutils (0.53) unstable; urgency=medium
 
